@@ -40,6 +40,10 @@ pip install opencv-python dlib imutils
 python -m venv venv
 venv\Scripts\activate
 
+## Set the model
+python example.py  (Use only for one time to set the requirements or any changes)
++ Then close, and now you are ready to run the model by using the code below.
+
 ## To Run the model
 python FaceEye_Train.py
 
