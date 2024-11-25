@@ -7,6 +7,12 @@
 Download and install the NVIDIA CUDA Toolkit --  https://developer.nvidia.com/cuda-toolkit
 Download and install cuDNN --  https://developer.nvidia.com/cudnn
 
+## Necessary To set the Model
+Dir. : Face live/gaze_tracking
+Create a folder named as "trained_models" inside "Dir. : Face live/gaze_tracking".
+Download this file -- (https://github.com/italojs/facial-landmarks-recognition/blob/master/shape_predictor_68_face_landmarks.dat)
+& move it in "trained_models" folder.
+
 ## Upgrade pip (optional but recommended):
 pip install --upgrade pip
 
