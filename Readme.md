@@ -34,7 +34,8 @@ pip install opencv-python dlib imutils
 python -m venv venv
 venv\Scripts\activate
 
-
+## To Run the model
+python FaceEye_Train.py
 
 
 
