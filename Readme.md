@@ -14,7 +14,7 @@ Download this file -- (https://github.com/italojs/facial-landmarks-recognition/b
 & move it in "trained_models" folder.
 
 ## For Example of the directory :
-[https://github.com/antoinelame/GazeTracking/tree/master/gaze_tracking]
+[[https://github.com/antoinelame/GazeTracking/tree/master/gaze_tracking]](https://github.com/antoinelame/GazeTracking/tree/master/gaze_tracking/trained_models)
 
 ## Upgrade pip (optional but recommended):
 pip install --upgrade pip
