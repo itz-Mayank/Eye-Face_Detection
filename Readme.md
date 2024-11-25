@@ -2,9 +2,7 @@
 
 ## Tenserflow setup
 
-TensorFlow Version	CUDA Version	cuDNN Version	NVIDIA Driver Version
-    2.10.x	            11.2	         8.1	        >= 450.80.02
-    2.9.x	            11.2	        8.1	            >= 450.80.02
+![image](https://github.com/user-attachments/assets/948f95d8-2636-46fd-aedd-96a6976a6120)
 
 Download and install the NVIDIA CUDA Toolkit --  https://developer.nvidia.com/cuda-toolkit
 Download and install cuDNN --  https://developer.nvidia.com/cudnn
