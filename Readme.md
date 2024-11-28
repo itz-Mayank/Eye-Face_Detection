@@ -8,7 +8,7 @@ Download and install the NVIDIA CUDA Toolkit --  https://developer.nvidia.com/cu
 Download and install cuDNN --  https://developer.nvidia.com/cudnn
 
 ## Install VS with C++
-![image].(https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSFeaturesPage&passive=true&tailored=cplus&cid=2031#cplusplus)
+(https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSFeaturesPage&passive=true&tailored=cplus&cid=2031#cplusplus)
 
 ## Necessary To set the Model
 Dir. : Face live/gaze_tracking
