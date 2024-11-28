@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from gaze_tracking import GazeTracking
+from gaze_tracking.gaze_tracking import GazeTracking
 import tensorflow as tf
 
 # Initialize GazeTracking for eye tracking
@@ -10,7 +10,7 @@ gaze = GazeTracking()
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 # Load the trained liveness model (ensure you have a trained model file)
-model = tf.keras.models.load_model("face_eye_liveness_model.h5")
+model = tf.keras.models.load_model("face_eye_liveness_model_lccfasd.h5")
 
 # Initialize webcam (ensure webcam starts after model load)
 cap = cv2.VideoCapture(0)
@@ -64,7 +64,7 @@ while True:
     for (x, y, w, h) in faces:
         # Extract the face region
         face_img = gray[y:y + h, x:x + w]
-        face_resized = cv2.resize(face_img, (128, 128))  # Resize to model input size
+        face_resized = cv2.resize(face_img, (224, 224))  # Resize to model input size
 
         # Convert grayscale to RGB for the model
         face_rgb = cv2.cvtColor(face_resized, cv2.COLOR_GRAY2RGB)
