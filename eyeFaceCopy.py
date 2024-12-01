@@ -15,7 +15,7 @@ input_name = onnx_session.get_inputs()[0].name
 output_name = onnx_session.get_outputs()[0].name
 
 # Initialize webcam (ensure webcam starts after model load)
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 if not cap.isOpened():
     print("Error: Could not open video.")
     exit()
@@ -142,18 +142,18 @@ while True:
         cv2.rectangle(annotated_frame, (x, y), (x + w, y + h), frame_color, 4)
 
         # Display the label and confidence
-        cv2.putText(annotated_frame, f"{liveness_label} ({liveness_confidence:.1f}%)", (x, y - 15),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, text_color, 2)
+        # cv2.putText(annotated_frame, f"{liveness_label} ({liveness_confidence:.1f}%)", (x, y - 15),
+        #             cv2.FONT_HERSHEY_SIMPLEX, 0.6, text_color, 2)
 
     # Display pupil coordinates and status
-    if current_left_pupil and current_right_pupil:
-        cv2.putText(annotated_frame, f"Left pupil: {current_left_pupil}", (10, 30),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
-        cv2.putText(annotated_frame, f"Right pupil: {current_right_pupil}", (10, 60),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
-    else:
-        cv2.putText(annotated_frame, "Pupils not detected", (10, 30),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
+    # if current_left_pupil and current_right_pupil:
+    #     cv2.putText(annotated_frame, f"Left pupil: {current_left_pupil}", (10, 30),
+    #                 cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
+    #     cv2.putText(annotated_frame, f"Right pupil: {current_right_pupil}", (10, 60),
+    #                 cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
+    # else:
+    #     cv2.putText(annotated_frame, "Pupils not detected", (10, 30),
+    #                 cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
 
     # Display the frame with predictions
     cv2.imshow("Real vs. Spoof Detection with Eye Movement", annotated_frame)
