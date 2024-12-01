@@ -19,6 +19,11 @@ pip install --upgrade pip
 ## Install OpenCV:
 pip install opencv-python
 pip install opencv-contrib-python
+pip install SpeechRecognition
+pip install pyaudio
+pip install pipwin
+pipwin install pyaudio
+
 
 ## Install TensorFlow:
 pip install tensorflow
