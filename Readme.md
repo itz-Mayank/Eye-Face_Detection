@@ -20,12 +20,12 @@ Download this file -- (https://github.com/italojs/facial-landmarks-recognition/b
 pip install --upgrade pip
 
 ## Install OpenCV:
-pip install opencv-python
-pip install opencv-contrib-python
-pip install SpeechRecognition
-pip install pyaudio
-pip install pipwin
-pipwin install pyaudio
+- pip install opencv-python
+- pip install opencv-contrib-python
+- pip install SpeechRecognition
+- pip install pyaudio
+- pip install pipwin
+- pipwin install pyaudio
 
 
 ## Install TensorFlow:
