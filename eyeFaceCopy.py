@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from gaze_tracking.gaze_tracking import GazeTracking
-import tensorflow as tf
+import onnxruntime as ort
 
 # Initialize GazeTracking for eye tracking
 gaze = GazeTracking()
@@ -9,8 +9,10 @@ gaze = GazeTracking()
 # Load Haar Cascade for face detection
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-# Load the trained liveness model (ensure you have a trained model file)
-model = tf.keras.models.load_model("face_eye_liveness_model_lccfasd.h5")
+# Load the ONNX model and initialize ONNX Runtime
+onnx_session = ort.InferenceSession("model.onnx")
+input_name = onnx_session.get_inputs()[0].name
+output_name = onnx_session.get_outputs()[0].name
 
 # Initialize webcam (ensure webcam starts after model load)
 cap = cv2.VideoCapture(0)
@@ -87,7 +89,8 @@ while True:
 
         # Run model prediction only every 5th frame to reduce lag
         if total_frames % 5 == 0:
-            prediction = model.predict(face_input)[0][0]  # Prediction should be a scalar, not an array
+            # Perform inference with ONNX Runtime
+            prediction = onnx_session.run([output_name], {input_name: face_input.astype(np.float32)})[0][0]
 
             # Ensure liveness_label and liveness_confidence are scalar and properly formatted
             if prediction > 0.5:
