@@ -9,12 +9,12 @@ from sklearn.model_selection import train_test_split
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras import mixed_precision
-import tensorflow_model_optimization as tfmot
 
 # Set GPU 0 as the visible device
 gpus = tf.config.list_physical_devices('GPU')
 if gpus:
     try:
+        # Restrict TensorFlow to only use GPU 0
         tf.config.set_visible_devices(gpus[0], 'GPU')
         tf.config.experimental.set_memory_growth(gpus[0], True)
         print("Using GPU 0:", gpus[0])
@@ -31,7 +31,7 @@ mixed_precision.set_global_policy(policy)
 IMG_HEIGHT = 224
 IMG_WIDTH = 224
 BATCH_SIZE = 32
-EPOCHS = 15
+EPOCHS = 45
 REAL_IMG_DIR = "LCC_FASD_training/real"
 SPOOF_IMG_DIR = "LCC_FASD_training/spoof"
 
@@ -108,52 +108,6 @@ history = model.fit(
     verbose=1
 )
 
-# Save the original trained model
-model.save("face_eye_liveness_model.h5")
-print("[INFO] Original model saved as face_eye_liveness_model.h5")
-
-# -------------------- Step 1: Quantization --------------------
-# Convert the model to TensorFlow Lite format with quantization
-converter = tf.lite.TFLiteConverter.from_keras_model(model)
-converter.optimizations = [tf.lite.Optimize.DEFAULT]
-tflite_model = converter.convert()
-
-# Save the quantized model
-with open("face_eye_liveness_model_quantized.tflite", "wb") as f:
-    f.write(tflite_model)
-
-print("[INFO] Quantized model saved as face_eye_liveness_model_quantized.tflite")
-
-# -------------------- Step 2: Pruning --------------------
-# Apply pruning to the model
-prune_low_magnitude = tfmot.sparsity.keras.prune_low_magnitude
-pruning_params = {
-    'pruning_schedule': tfmot.sparsity.keras.PolynomialDecay(
-        initial_sparsity=0.30, final_sparsity=0.80, begin_step=0, end_step=1000
-    )
-}
-pruned_model = prune_low_magnitude(model, **pruning_params)
-
-# Compile the pruned model
-pruned_model.compile(
-    optimizer=Adam(learning_rate=0.0001),
-    loss={
-        "face_liveness": "binary_crossentropy",
-        "eye_liveness": "binary_crossentropy",
-    },
-    metrics=["accuracy"],
-)
-
-# Fine-tune the pruned model
-pruned_model.fit(
-    train_generator,
-    steps_per_epoch=len(train_df) // BATCH_SIZE,
-    validation_data=val_generator,
-    validation_steps=len(val_df) // BATCH_SIZE,
-    epochs=5,
-)
-
-# Strip pruning wrappers and save
-final_pruned_model = tfmot.sparsity.keras.strip_pruning(pruned_model)
-final_pruned_model.save("face_eye_liveness_model_pruned.h5")
-print("[INFO] Pruned model saved as face_eye_liveness_model_pruned.h5")
+# Save the trained model
+model.save("face_eye_liveness_model_lccfasd.h5")
+print("[INFO] Model saved as face_eye_liveness_model_lccfasd.h5")
