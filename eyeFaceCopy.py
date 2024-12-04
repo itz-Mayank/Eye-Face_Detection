@@ -142,8 +142,8 @@ while True:
         cv2.rectangle(annotated_frame, (x, y), (x + w, y + h), frame_color, 4)
 
         # Display the label and confidence
-        # cv2.putText(annotated_frame, f"{liveness_label} ({liveness_confidence:.1f}%)", (x, y - 15),
-        #             cv2.FONT_HERSHEY_SIMPLEX, 0.6, text_color, 2)
+        cv2.putText(annotated_frame, f"{liveness_label} ({liveness_confidence:.1f}%)", (x, y - 15),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, text_color, 2)
 
     # Display pupil coordinates and status
     # if current_left_pupil and current_right_pupil:
@@ -183,3 +183,7 @@ print(f"Spoof: {spoof_count} ({spoof_percentage:.1f}%)")
 overall_accuracy = ((real_count + spoof_count) / total_frames) * 100 if total_frames > 0 else 0
 overall_accuracy = min(100.0, overall_accuracy)  # Ensure accuracy doesn't exceed 100%
 print(f"\nOverall Detection Accuracy: {overall_accuracy:.1f}%")
+
+
+## IF BLINK is between 1 to 3 then real otherwise fake 
+## speech me 3 words sahi se detect hue to real otherwise fake
