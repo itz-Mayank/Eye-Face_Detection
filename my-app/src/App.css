@@ -1,0 +1,66 @@
+/* src/App.css */
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: #222;
+  color: white;
+}
+
+.canvas {
+  border: 1px solid #fff;
+}
+
+.controls {
+  margin-top: 20px;
+}
+
+#start-btn {
+  background-color: blue;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+#start-btn:disabled {
+  background-color: grey;
+}
+
+.message {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.canvas {
+  height: 90%;
+  width: 90%;
+}
+
+.webcam-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#close-webcam-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
