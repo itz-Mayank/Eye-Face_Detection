@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real vs Spoof Detection</title>
+</head>
+<body>
+    <h1>Real vs Spoof Detection</h1>
+    <video id="videoFeed" width="640" height="480" autoplay></video>
+    <button onclick="captureImage()">Capture Image and Check Liveness</button>
+    <p id="result"></p>
+
+    <script>
+        // Set up the webcam feed
+        const videoFeed = document.getElementById('videoFeed');
+
+        // Access the webcam and display the video feed
+        async function setupWebcam() {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            videoFeed.srcObject = stream;
+        }
+
+        // Capture the image from the video feed
+        function captureImage() {
+            const canvas = document.createElement('canvas');
+            canvas.width = videoFeed.videoWidth;
+            canvas.height = videoFeed.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(videoFeed, 0, 0, canvas.width, canvas.height);
+
+            // Convert the image to a Blob and send to the server
+            canvas.toBlob(async function(blob) {
+                const formData = new FormData();
+                formData.append('image', blob, 'captured-image.jpg');
+
+                try {
+                    const response = await fetch('http://127.0.0.1:5000/predict', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to get response from server');
+                    }
+
+                    const result = await response.json();
+                    document.getElementById('result').innerText =
+                        `Label: ${result.label}, Confidence: ${result.confidence.toFixed(2)}%`;
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error making prediction');
+                }
+            }, 'image/jpeg');
+        }
+
+        // Initialize the webcam
+        setupWebcam();
+    </script>
+</body>
+</html>
