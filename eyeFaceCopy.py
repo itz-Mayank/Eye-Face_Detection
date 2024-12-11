@@ -4,10 +4,10 @@ from gaze_tracking.gaze_tracking import GazeTracking
 import onnxruntime as ort
 
 # Constants
-FRAME_SKIP_INITIAL = 3  # Initial frame skip count
+FRAME_SKIP_INITIAL = 5  # Initial frame skip count
 MAX_PUPIL_DETECTION_FRAMES = 5
 FACE_RESIZE_DIM = (224, 224)
-MODEL_THRESHOLD = 0.5  # Liveness threshold
+MODEL_THRESHOLD = 0.90  # Liveness threshold
 REAL_COLOR = (0, 255, 0)  # Green for "Real"
 SPOOF_COLOR = (0, 0, 255)  # Red for "Spoof"
 
@@ -23,7 +23,7 @@ input_name = onnx_session.get_inputs()[0].name
 output_name = onnx_session.get_outputs()[0].name
 
 # Initialize webcam
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 if not cap.isOpened():
     print("Error: Could not open video.")
     exit()
@@ -59,10 +59,9 @@ def process_frame(frame, total_frames):
     """Process a single frame and return annotations and labels."""
     global pupil_detection_count, blink_count, is_eye_closed
 
-    # Resize frame for faster processing
+    # Flip and resize frame
     frame = cv2.flip(frame, 1)
-    # frame_resized = cv2.resize(frame, (640, 480))
-    frame_resized = cv2.resize(frame, (1280, 720))
+    frame_resized = cv2.resize(frame, (640, 480))
     gray = cv2.cvtColor(frame_resized, cv2.COLOR_BGR2GRAY)
 
     # Analyze gaze and pupils
@@ -74,13 +73,18 @@ def process_frame(frame, total_frames):
     # Detect faces
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
 
-    liveness_label = "Spoof"
-    liveness_confidence = 0.0
+    # Find the largest face (nearest face)
+    if len(faces) > 0:
+        faces = sorted(faces, key=lambda f: f[2] * f[3], reverse=True)  # Sort by area (w * h)
+        x, y, w, h = faces[0]  # Pick the largest face
 
-    for (x, y, w, h) in faces:
         # Extract face region
         face_img = gray[y:y + h, x:x + w]
         face_input = preprocess_face(face_img)
+
+        # Initialize liveness_label and confidence
+        liveness_label = "Spoof"
+        liveness_confidence = 0.0
 
         # Run model every N frames
         if total_frames % frame_skip == 0:
@@ -90,7 +94,8 @@ def process_frame(frame, total_frames):
         if left_pupil and right_pupil:
             pupil_detection_count += 1
             if pupil_detection_count >= MAX_PUPIL_DETECTION_FRAMES:
-                liveness_label, liveness_confidence = "Real", 100.0
+                liveness_label = "Real"
+                liveness_confidence = max(liveness_confidence, 96.0)  # Boost confidence for consistent pupil detection
 
             # Detect blinks
             if gaze.is_blinking():
@@ -102,20 +107,16 @@ def process_frame(frame, total_frames):
         else:
             pupil_detection_count = 0
 
-        # Draw rectangle and label
+        # Draw rectangle and label with confidence
         frame_color = REAL_COLOR if liveness_label == "Real" else SPOOF_COLOR
         cv2.rectangle(annotated_frame, (x, y), (x + w, y + h), frame_color, 4)
         cv2.putText(annotated_frame, f"{liveness_label} ({liveness_confidence:.1f}%)", (x, y - 15),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, frame_color, 2)
-
-    # Annotate pupils
-    if left_pupil and right_pupil:
-        cv2.putText(annotated_frame, f"Left pupil: {left_pupil}", (10, 30),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
-        cv2.putText(annotated_frame, f"Right pupil: {right_pupil}", (10, 60),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
     else:
-        cv2.putText(annotated_frame, "Pupils not detected", (10, 30),
+        # No face detected
+        liveness_label = "No Face"
+        liveness_confidence = 0.0
+        cv2.putText(annotated_frame, "No Face Detected", (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
 
     return annotated_frame, liveness_label
@@ -143,7 +144,7 @@ while True:
     # Update counts
     if liveness_label == "Real":
         real_count += 1
-    else:
+    elif liveness_label == "Spoof":
         spoof_count += 1
 
     # Display the frame
