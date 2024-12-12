@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Face Liveness Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        button.stop {
+            background-color: #FF5733;
+        }
+        .video-feed {
+            margin: 20px auto;
+            max-width: 640px;
+        }
+        .video-feed img {
+            border-radius: 50%;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Liveness Detection</h1>
+    <p>Aadhaar Authentication Platform by UIDAI</p>
+
+    <!-- Button to toggle camera -->
+    <button id="toggleButton" onclick="handleButtonClick()">Start Camera</button>
+
+    <!-- Display the video feed when the camera is enabled -->
+    <div class="video-feed" id="videoFeed"></div>
+
+    <script>
+        let cameraEnabled = false;
+
+        function handleButtonClick() {
+            const button = document.getElementById('toggleButton');
+            const videoFeed = document.getElementById('videoFeed');
+
+            if (cameraEnabled) {
+                // Stop Camera: Refresh the page
+                window.location.reload();
+            } else {
+                // Start Camera: Toggle the state
+                cameraEnabled = true;
+                button.textContent = 'Stop Camera';
+                button.classList.add('stop');
+
+                // Display the video feed
+                const img = document.createElement('img');
+                img.src = 'http://localhost:5000/video_feed'; // Flask backend video feed URL
+                img.alt = 'Face Detection Feed';
+                videoFeed.appendChild(img);
+            }
+        }
+    </script>
+</body>
+</html>

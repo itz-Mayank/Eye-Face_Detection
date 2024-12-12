@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Secure Face Authentication - UIDAI</title>
+    <link rel="stylesheet" href="static/style.css">
+    <!-- Include Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgskw6Iau-bst5nZpXdzCDzap3btxLVgP2CwkSSnG046dBQ4isY486xDjCzCmVnQWZTYGMw0pTK1Lc5Sy6NU9MJspbPrYJhUxdrow8uT9TA2ZyyGJlGPo-wzn_mcuGFeFpMt8m5cizEnrKAGKP_IC8Hz2gq9nTJEekdfZzAnebfWfjMeyOplHGIzdoen-RN" 
+            alt="Logo 1" class="header-img">
+            <img src="https://th.bing.com/th/id/R.16bbf553b95f908f42f207b58c9ba8e7?rik=QieK3DZ914cOwA&riu=http%3a%2f%2fwww.indiaretailing.com%2fwp-content%2fuploads%2f2018%2f02%2fuid_logo.jpg&ehk=zM0%2fcwuNxDuBjXXSDPDjRMhwyaRYlSQueuXqlvM%2f9bw%3d&risl=&pid=ImgRaw&r=0" 
+            alt="Logo 2" class="header-img">
+            <span>Secure Face Authentication</span>
+        </div>
+        <nav>
+            <a href="/templates/index.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="content-box">
+            <h1>Secure Face Authentication</h1>
+            <h2>Using Edge AI and Model Protection for UIDAI</h2>
+            <p>
+                UIDAI has implemented a secure face authentication solution for mobile and desktop browsers, leveraging AI on the edge. The system uses optimized ML models (5 MB, 500 ms inference time) with obfuscation and cryptography for protection. It calculates a confidence score, requiring a minimum of 95% for success. Users perform tasks like eye calibration, blinking, and smiling, with up to two attempts for verification. After two failed attempts, access is locked for the day. The solution supports high-volume transactions and offers scalable, real-time, and user-friendly authentication.
+            </p>
+            <div class="button-container">
+                <a href="#" class="authenticate-button">Demo video</a>
+            </div>
+        </div>
+    </main>
+
+    <main>        
+        <!-- New Content Box -->
+        <div class="new-content">
+            <div class="content-left">
+                <img src="{{ url_for('static', filename='Red-_11_.gif') }}" alt="Face Liveness Detection GIF" class="liveness-gif">
+            </div>
+            <div class="content-right">
+                <h2><b>Visualization</b></h2>
+                <h2>Instructions for Face Liveness Detection</h2>
+                <p><strong>Position Yourself:</strong></p>
+                <ul>
+                    <li>Sit 25–30 cm from the camera, adjust to fit your face in the frame, and stay within the frame to proceed.</li>
+                </ul>
+
+                <p><strong>Perform the Challenge:</strong></p>
+                <ul>
+                    <li>Trace red dots, say the displayed words aloud, and blink to continue.</li>
+                    <li>End by smiling when prompted to complete the task.</li>
+                </ul>
+
+                <p><strong>Important Notes:</strong></p>
+                <ul>
+                    <li>Inaccurate dot tracing or fewer than 2 correct tasks will mark you as fake.</li>
+                    <li>You have 2 attempts per day; after that, access will be blocked.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Modal for Instructions -->
+        <div id="modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2>Instructions</h2>
+                <p>1. <b>Position Yourself:</b> Sit 25–30 cm from the camera, adjust to fit your face in the frame.</p>
+                <p>2. <b>Perform the Challenge:</b> Trace red dots, speak displayed words, and blink when prompted.</p>
+                <p>
+                        3. <b>Important Notes:</b>
+                        <ul>
+                            <li>Inaccurate dot tracing or fewer than 2 correct tasks will mark you as fake.</li>
+                            <li>You have 2 attempts per day; after that, access will be blocked for 24 hours.</li>
+                        </ul>
+                </p>
+                <p>4. Click "OK" to begin or "Cancel" to exit.</p>
+                <div class="modal-buttons">
+                    <button class="ok-button" onclick="startProcess()">OK</button>
+                    <button class="cancel-button" onclick="hideModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button to Trigger Modal -->
+        <div class="button-container">
+            <button class="authenticate-button" onclick="showModal()">Start Authentication</button>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+            </div>
+
+            <div class="footer-center">
+                <div class="social-icons">
+                    <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:example@gmail.com" target="_blank" class="social-icon"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-right">
+                <p><a href="sih@gmail.com" class="contact-link">Contact Us</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Show the modal
+        function showModal() {
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        // Hide the modal
+        function hideModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Start the face authentication process
+        function startProcess() {
+            window.location.href = './another.html'; // Redirect to another.html page
+        }
+    </script>
+</body>
+</html>

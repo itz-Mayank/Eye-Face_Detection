@@ -1,0 +1,479 @@
+/* General page setup */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Header styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0051a2;
+    padding: 10px 50px;
+    color: #fff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.header-img {
+    height: 50px; /* Adjust the height of the images */
+    margin-right: 10px; /* Add space between the images */
+}
+
+.navbar .logo span {
+    font-size: 22px;
+    margin-left: 10px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.navbar nav a {
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navbar nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main content container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.content-box {
+    background-color: #fff;
+    padding: 40px;
+    max-width: 700px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.content-box:hover {
+    box-shadow: 0 0 20px rgba(0, 81, 162, 0.6), 0 0 40px rgba(0, 81, 162, 0.4), 0 0 60px rgba(0, 81, 162, 0.2);
+}
+
+/* new-content container */
+.new-content {
+    background-color: #fff;
+    display: flex; /* Enables horizontal layout */
+    padding: 40px;
+    max-width: 900px;
+    text-align: left;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 50px auto; /* Centers the box */
+    transition: box-shadow 0.3s ease-in-out;
+    gap: 20px; /* Adds space between left and right sections */
+}
+
+.new-content:hover {
+    box-shadow: 0 0 20px rgba(0, 81, 162, 0.6), 0 0 40px rgba(0, 81, 162, 0.4), 0 0 60px rgba(0, 81, 162, 0.2);
+}
+
+/* Left section for GIF */
+.content-left {
+    flex: 1; /* Ensures proper width for the GIF */
+    display: flex;
+    justify-content: center; /* Centers the GIF horizontally within its section */
+    align-items: center; /* Centers the GIF vertically within its section */
+}
+
+.liveness-gif {
+    width: 300px; /* Makes sure the GIF fits within its container */
+    height: 500px;
+    border-radius: 8px;
+}
+
+/* Right section for instructions */
+.content-right {
+    flex: 2; /* Makes the instruction section wider than the GIF section */
+    padding-left: 20px;
+}
+
+.content-right h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #333;
+}
+
+.content-right ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding: 0;
+}
+
+.content-right li {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Center the button */
+.button-container {
+    text-align: center; /* Center content inside the container */
+    margin-top: 20px;
+}
+
+/* Authentication button styling */
+.authenticate-button {
+    background-color: #0051a2;
+    color: #fff;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    margin: 20px auto; /* Center the button horizontally and add vertical spacing */
+    box-shadow: 0 4px 10px rgba(0, 79, 157, 0.3);
+    margin-bottom: 20px;
+}
+
+/* Hover effects */
+.authenticate-button:hover {
+    color: #fff;
+    background-color: #003f7d;
+    box-shadow: 0 0 15px rgba(0, 79, 157, 0.5);
+    transform: scale(1.15);
+}
+
+/* Sliding border animation */
+.authenticate-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease-in-out;
+}
+
+.authenticate-button:hover::before {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* Ripple effect */
+.authenticate-button::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: width 0.4s ease-in-out, height 0.4s ease-in-out, opacity 0.6s ease-out;
+}
+
+.authenticate-button:hover::after {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+}
+
+/* Active state */
+.authenticate-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px 12px rgba(0, 79, 157, 0.3);
+}
+
+
+/* Headings */
+h1 {
+    font-size: 36px;
+    color: #0051a2;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Description styling */
+p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Button styling */
+.button-container {
+    margin-top: 30px;
+}
+
+.start-button {
+    background-color: #0051a2;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.authenticate-button:hover {
+    background-color: #003b7a;
+}
+
+.button2-container {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    margin-top: 20px; /* Adds space between the button and the content above */
+}
+
+.start2-button {
+    background-color: #0051a2;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.start2-button:hover {
+    background-color: #003f7d;
+}
+
+/* General Modal Styling */
+.modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000; /* Ensures it's above other content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content Box */
+.modal-content {
+    background: #ffffff;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+/* Modal Header */
+.modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #0051a2;
+}
+
+/* Modal Paragraphs */
+.modal-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* List Styling */
+.modal-content ul {
+    margin: 10px 0;
+    padding-left: 20px;
+    list-style-type: disc; /* Standard bullet points */
+}
+
+.modal-content li {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* Modal Buttons Container */
+.modal-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* OK and Cancel Buttons */
+.modal-buttons .ok-button,
+.modal-buttons .cancel-button {
+    background-color: #54d343;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-buttons .ok-button:hover {
+    background-color: green;
+}
+
+.modal-buttons .cancel-button {
+    background-color: #ff4d4d;
+}
+
+.modal-buttons .cancel-button:hover {
+    background-color: #cc0000;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #0051a2;
+    color: #fff;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+/* Footer Layout */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Left Side: Copyright */
+.footer-left p {
+    margin: 0;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Center: Social Icons */
+.footer-center .social-icons {
+    text-align: center;
+}
+
+.social-icon {
+    display: inline-block;
+    margin: 0 10px;
+    color: #fff;
+    font-size: 20px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #ffcc00;
+    transform: scale(1.3);
+}
+
+/* Right Side: Contact Us */
+.footer-right p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.contact-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #ffcc00;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-left, .footer-right {
+        margin: 10px 0;
+        text-align: center;
+    }
+    
+    .footer-center {
+        margin: 10px 0;
+    }
+}
+
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .content-box {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .new-content {
+        flex-direction: column; /* Stacks the GIF and instructions vertically */
+        text-align: center;
+    }
+
+    .content-left, .content-right {
+        flex: unset; /* Removes flex proportions */
+    }
+
+    .content-right {
+        padding-left: 0; /* Removes extra spacing */
+    }
+}
