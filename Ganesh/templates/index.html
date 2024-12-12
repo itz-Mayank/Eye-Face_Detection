@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Secure Face Authentication - UIDAI</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgskw6Iau-bst5nZpXdzCDzap3btxLVgP2CwkSSnG046dBQ4isY486xDjCzCmVnQWZTYGMw0pTK1Lc5Sy6NU9MJspbPrYJhUxdrow8uT9TA2ZyyGJlGPo-wzn_mcuGFeFpMt8m5cizEnrKAGKP_IC8Hz2gq9nTJEekdfZzAnebfWfjMeyOplHGIzdoen-RN" 
+            alt="Logo 1" class="header-img">
+            <img src="https://th.bing.com/th/id/R.16bbf553b95f908f42f207b58c9ba8e7?rik=QieK3DZ914cOwA&riu=http%3a%2f%2fwww.indiaretailing.com%2fwp-content%2fuploads%2f2018%2f02%2fuid_logo.jpg&ehk=zM0%2fcwuNxDuBjXXSDPDjRMhwyaRYlSQueuXqlvM%2f9bw%3d&risl=&pid=ImgRaw&r=0" 
+            alt="Logo 2" class="header-img">
+            <span>Secure Face Authentication</span>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="content-box">
+            <h1>Secure Face Authentication</h1>
+            <h2>Using Edge AI and Model Protection for UIDAI</h2>
+            <p>
+                UIDAI is exploring solutions for face authentication within desktop browsers by leveraging AI on the edge.
+                This requires a mechanism to ensure that ML models used for liveness checks are protected from tampering 
+                and reverse engineering. The solution must incorporate scalable, secure, and optimized solutions.
+            </p>
+            <div class="button-container">
+                <div class="start-button" onclick="showModal()">Start</div>
+            </div>         
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <h2>Instructions</h2>
+                    <p>1. <b>Position Yourself:</b> Sit 25–30 cm from the camera, adjust to fit your face in the frame.</p>
+                    <p>2. <b>Perform the Challenge:</b> Trace red dots, speak displayed words, and blink when prompted.</p>
+                    <p>3. Click "OK" to begin or "Cancel" to exit.</p>
+                    <div class="modal-buttons">
+                        <button class="ok-button" onclick="startProcess()">OK</button>
+                        <button class="cancel-button" onclick="hideModal()">Cancel</button>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>© 2024 UIDAI Secure Face Authentication Project</p>
+    </footer>
+
+    <script>
+        // Show the modal
+        function showModal() {
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        // Hide the modal
+        function hideModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Start the face authentication process
+        function startProcess() {
+            window.location.href = './another.html'; // Redirect to another.html page
+        }
+    </script>
+</body>
+</html>

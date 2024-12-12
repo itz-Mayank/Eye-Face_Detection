@@ -1,0 +1,216 @@
+/* General page setup */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Header styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0051a2;
+    padding: 10px 50px;
+    color: #fff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.header-img {
+    height: 50px; /* Adjust the height of the images */
+    margin-right: 10px; /* Add space between the images */
+}
+
+.navbar .logo span {
+    font-size: 22px;
+    margin-left: 10px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.navbar nav a {
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navbar nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main content container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.content-box {
+    background-color: #fff;
+    padding: 40px;
+    max-width: 700px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1 {
+    font-size: 36px;
+    color: #0051a2;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Description styling */
+p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Button styling */
+.button-container {
+    margin-top: 30px;
+}
+
+
+/* 
+/* .start-button {
+    background-color: #0051a2;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    margin-left: 280px;
+    margin-right: 320px;
+    cursor: pointer; /* Pointer cursor */
+    /* transition: all 0.3s ease; /* Smooth transition for hover effects */
+/* } */ 
+/* 
+.start-button:hover {
+    /* background-color: #0056b3; /* Darker shade on hover */
+    /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); Shadow effect */
+    /* transform: scale(1.1); Slightly increase size */
+/* } */ 
+
+/* Style for the button */
+.start-button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Modal container */
+.modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal content */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Buttons in the modal */
+.modal-buttons button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.ok-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Button hover effects */
+.start-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+    transform: scale(1.1);
+}
+
+
+/* Footer styling */
+footer {
+    background-color: #0051a2;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .content-box {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}

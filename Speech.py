@@ -37,7 +37,7 @@ def listen_for_word():
             print("Timeout: Please speak a bit louder or closer.")
             return None
         except sr.UnknownValueError:
-            print("Sorry, I couldn't understand the audio. Please try again.")
+            print("Sorry, I couldn't understand the audio. Please try again.") 
             return None
         except sr.RequestError as e:
             print(f"There was an issue with the speech recognition service: {e}")

@@ -22,11 +22,6 @@ pip install --upgrade pip
 ## Install OpenCV:
 - pip install opencv-python
 - pip install opencv-contrib-python
-- pip install SpeechRecognition
-- pip install pyaudio
-- pip install pipwin
-- pipwin install pyaudio
-
 
 ## Install TensorFlow:
 pip install tensorflow
@@ -35,7 +30,11 @@ pip install tensorflow
 pip install numpy
 
 ## Audio
-pip install opencv-python tensorflow numpy speechrecognition pyaudio pvrecorder
+- pip install opencv-python tensorflow numpy speechrecognition pyaudio pvrecorder
+- pip install SpeechRecognition
+- pip install pyaudio
+- pip install pipwin
+- pipwin install pyaudio
 
 ## Requirements
 pip install -r requirements.txt
@@ -51,6 +50,9 @@ venv\Scripts\activate
 ## To Run the model
 python FaceEye_Train.py
 
+## Run to the Web server
+- cd verification_project
+- python manage.py runserver
 
 
 

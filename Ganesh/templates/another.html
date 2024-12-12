@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Face Liveness Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .video-feed {
+            margin: 20px auto;
+            max-width: 640px;
+        }
+        .video-feed img {
+            border-radius: 50%;
+            width: 50%;
+        }
+        #verificationCard {
+            display: none;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 400px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        #verificationCard h2 {
+            color: black;
+            margin-bottom: 20px;
+        }
+        #verificationCard button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #verificationCard button.cancel {
+            background-color: #FF5733;
+        }
+        .alert-popup {
+            display: none;
+            padding: 20px;
+            background-color: #FF5733;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Liveness Detection</h1>
+
+    <!-- Video feed -->
+    <div class="video-feed">
+        <img id="videoStream" src="{{ url_for('video_feed') }}" alt="Face Detection Feed">
+    </div>
+
+    <!-- Alert popup for failed face detection -->
+    <div id="alertPopup" class="alert-popup">
+        <p>Face detection failed. Please try again.</p>
+    </div>
+
+    <!-- Card for verification completion -->
+    <div id="verificationCard">
+        <h2>Verification Completed</h2>
+        <p>Now you can move to eye detection process.</p>
+        <button onclick="proceedToNextStep()">OK</button>
+        <button class="cancel" onclick="cancelVerification()">Cancel</button>
+    </div>
+
+    <script>
+        const videoStream = document.getElementById('videoStream');
+        const verificationCard = document.getElementById('verificationCard');
+        const alertPopup = document.getElementById('alertPopup');
+
+        let alertShown = false;
+
+        // Wait for the video stream to load
+        videoStream.addEventListener('load', () => {
+            setTimeout(() => {
+                // Show the verification card after 3 seconds if the video feed has loaded
+                verificationCard.style.display = 'block';
+                alertPopup.style.display = 'none'; // Hide the alert if verification is successful
+            }, 3000); // Show after 3 seconds
+        });
+
+        // Listen for updates to the video stream source
+        videoStream.addEventListener('load', () => {
+            const imgUrl = videoStream.src;
+
+            if (imgUrl.includes('green')) {
+                // Handle green condition (indicating successful verification)
+                alertShown = false;
+            } else if (imgUrl.includes('red') && !alertShown) {
+                // Show the alert if the outline is red
+                alertPopup.style.display = 'block';
+                alertShown = true;
+            }
+        });
+
+        function proceedToNextStep() {
+            window.location.href = "/gaze"; // Redirect to another page after verification
+        }
+
+        function cancelVerification() {
+            alert('Verification canceled.');
+        }
+    </script>
+</body>
+</html>
